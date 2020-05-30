@@ -1,16 +1,15 @@
 import React from 'react';
 import HistoryList from './containers/HistoryList';
+import CreatePost from '@/containers/CreatePost';
+import { useStyles } from './Home.styles';
 
 const Home = () => {
+  const { container, content } = useStyles();
   return (
-    <div
-      style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        paddingTop: 80,
-      }}
-    >
+    <div className={container}>
+      <div className={content}>
+        <CreatePost />
+      </div>
       <HistoryList />
     </div>
   );
