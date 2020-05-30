@@ -9,19 +9,34 @@ import useStyles from './MenuBasic.styles';
 
 export default function LabelBottomNavigation() {
   const { root } = useStyles();
-  const [value, setValue] = React.useState('recents');
+  const [value, setValue] = React.useState('home');
 
   const handleChange = (event, newValue) => {
-    console.log('newValue', newValue);
     setValue(newValue);
   };
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={root}>
-      <BottomNavigationAction label="Recents" value="recents" icon={<RestoreIcon />} />
-      <BottomNavigationAction label="Favorites" value="favorites" icon={<FavoriteIcon />} />
-      <BottomNavigationAction label="Nearby" value="nearby" icon={<LocationOnIcon />} />
-      <BottomNavigationAction label="Folder" value="folder" icon={<FolderIcon />} />
+      <BottomNavigationAction
+        label="Home"
+        value="home"
+        icon={<RestoreIcon />}
+      />
+      <BottomNavigationAction
+        label="Favorites"
+        value="favorites"
+        icon={<FavoriteIcon />}
+      />
+      <BottomNavigationAction
+        label="Nearby"
+        value="nearby"
+        icon={<LocationOnIcon />}
+      />
+      <BottomNavigationAction
+        label="Folder"
+        value="folder"
+        icon={<FolderIcon />}
+      />
     </BottomNavigation>
   );
 }
