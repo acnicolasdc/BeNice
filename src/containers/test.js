@@ -1,9 +1,9 @@
 import React from 'react'
-import ProfileComponent from '../components/Profile'
+import ProfileContainer from '@/containers/Profile'
 
 const Test = () => {
     return (
-        <ProfileComponent/>
+        <ProfileContainer/>
     )
 }
 
