@@ -37,6 +37,7 @@ const CreatePublication = () => {
     const file =  response.json();
         image= file.secure_url;
 };
+render(){   
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -90,6 +91,7 @@ const CreatePublication = () => {
           </Button>
     </Container>
   );
-};
+}
+}
 
 export default CreatePublication;
