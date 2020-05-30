@@ -1,8 +1,8 @@
-import { combineReducers } from 'redux-immutable';
-import test from './test.duck';
+import { combineReducers } from 'redux';
+import auth from './auth.duck';
 
 const reducer = combineReducers({
-  test,
+  auth,
 });
 
 export default reducer;

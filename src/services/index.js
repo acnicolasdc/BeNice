@@ -1,8 +1,5 @@
 import axios from '@/utils/axiosManager';
-import Test from './test.service';
+import Auth from './auth.service';
+const api = axios.api();
 
-const api = new axios.api();
-
-
-export const auth = new Test(api);
-
+export const auth = new Auth(api);
