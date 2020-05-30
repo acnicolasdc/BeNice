@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = '';
+const BASE_URL = 'https://benice-back-heroku.herokuapp.com/benice/v1';
 const CONTENT_TYPE = 'application/x-www-form-urlencoded';
 class AxiosManager {
   constructor() {
@@ -9,10 +9,9 @@ class AxiosManager {
   init() {
     this.setHeader();
     this.handleError();
-    this.setAuthorization();
+    this.setBaseUrl(BASE_URL);
   }
-  api(url = BASE_URL) {
-    this.setBaseUrl(url);
+  api() {
     return this.axiosDefault;
   }
   setBaseUrl(url = BASE_URL) {
