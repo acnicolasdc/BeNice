@@ -8,7 +8,7 @@ const Router = () => {
   const { session } = useContext(SessionContext);
   return (
     <BrowserRouter>
-      {session ? <PrivateRoutes /> : <PublicRoutes />}
+      {true ? <PrivateRoutes /> : <PublicRoutes />}
     </BrowserRouter>
   );
 };
