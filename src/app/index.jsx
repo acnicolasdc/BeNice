@@ -10,11 +10,11 @@ const App = () => {
   return (
     <ReduxProvider store={store}>
       <SessionProvider>
-      <ThemeProvider>
+        <ThemeProvider>
           <MainContainer>
             <Router />
           </MainContainer>
-          </ThemeProvider>
+        </ThemeProvider>
       </SessionProvider>
     </ReduxProvider>
   );
