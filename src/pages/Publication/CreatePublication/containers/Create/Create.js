@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
@@ -12,32 +12,37 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import {Image} from 'cloudinary-react';
 import {CloudinaryContext, Transformation} from 'cloudinary-react';
+import { createRequest } from '@/redux/duck/create.duck';
+import { useDispatch, useSelector } from 'react-redux';
+
 
 const CreatePublication = () => {
 
-
+    const [imagen, setImagen] = useState(false);
+    const dispatch = useDispatch();
   const { paper, avatar, form, submit } = useStyles();
   
   const arTag=["Medio ambiente","Transporte limpio"];
   var image='';
-  var largeImage='';
   const uploadFile =async(e) => {
     const files = e.target.files;
     image=e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
     data.append('upload_preset', 'sickfits');
-    const response = await fetch(
+   var response= dispatch(createRequest(data));
+   debugger
+    /* const response = await fetch(
         'https://api.cloudinary.com/v1_1/nreyes-lean/image/upload/',
         {
             method: 'POST',
             body: data
         }
-    );
-    const file =  response.json();
-        image= file.secure_url;
-};
-render(){   
+    ); */
+    /* const file =  response.json();
+    this.setImagen(file.secure_url); */
+};  
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -64,20 +69,20 @@ render(){
           <input
           className="csv-input"
           type="file"
-          onChange={ (e) =>console.log( uploadFile(e)) }
+          onChange={ (e) =>{console.log( uploadFile(e)); }}
           name="file"
           placeholder={null}
         >
         
         </input>
-        <img src={image}/>
+        {image&&<img width='200' src={image} alt='Upload Preview' />}
 
       
         </form>
       </div>
       <FormGroup row>
 {arTag.map((item)=>(
-      <FormControlLabel control={<Checkbox name={item}  />} label= {item} />
+      <FormControlLabel control={<Checkbox name={item}  />} label= {item} key={item}/>
       )) }
     </FormGroup>
     <Button
@@ -92,6 +97,6 @@ render(){
     </Container>
   );
 }
-}
+
 
 export default CreatePublication;
