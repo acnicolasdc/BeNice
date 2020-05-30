@@ -1,11 +1,11 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
-import Test from '@/containers/test';
+import SignIn from './SignIn';
 
 const AuthRoutes = () => {
   return (
     <Switch>
-      <Route exact path="/" component={Test} />
+      <Route exact path="/" component={SignIn} />
     </Switch>
   );
 };

@@ -1,37 +1,46 @@
 import React, { useState, useLayoutEffect } from 'react';
-import { ThemeProvider as StyledThemeProvider } from '@material-ui/core/styles';
+import CssBaseline from '@material-ui/core/CssBaseline';
+import { createMuiTheme } from '@material-ui/core/styles';
 import { getStorage, setStorage } from '@/utils/localStorage';
-import { darkTheme, lightTheme } from './theme';
-import purple from '@material-ui/core/colors/purple';
-export const lightContextTheme = lightTheme;
-export const darkContextTheme = darkTheme;
+import { ThemeProvider as StyledThemeProvider } from '@material-ui/core/styles';
+import defaultTheme from './theme';
 
 export const ThemeContext = React.createContext({
-    dark: false,
-    toggleSwitch: () => {},
+  dark: false,
+  toggleSwitch: () => {},
 });
 
-function ThemeProvider (props) {
-    const [dark, setDark] = useState(false);
-    console.log(purple)
-    useLayoutEffect(() => {
-        const lastTheme = getStorage('darkTheme');
-        const isDarkMode = lastTheme === 'true';
-        setDark(isDarkMode);
-    }, [dark]);
+function ThemeProvider(props) {
+  const [dark, setDark] = useState(false);
+  useLayoutEffect(() => {
+    const lastTheme = getStorage('darkTheme');
+    const isDarkMode = lastTheme === 'true';
+    setDark(isDarkMode);
+  }, [dark]);
 
-    const toggleSwitch = () => {
-        setDark(!dark);
-        setStorage('darkTheme', !dark);
-    };
+  const theme = React.useMemo(
+    () =>
+      createMuiTheme({
+        palette: {
+          ...defaultTheme.palette,
+          type: dark ? 'dark' : 'light',
+        },
+      }),
+    [dark]
+  );
+  const toggleSwitch = () => {
+    setDark(!dark);
+    setStorage('darkTheme', !dark);
+  };
 
-    return (
-        <ThemeContext.Provider value={{ dark, toggleSwitch }}>
-            <StyledThemeProvider theme={dark?darkTheme:lightTheme}>
-                {props.children}
-            </StyledThemeProvider>
-        </ThemeContext.Provider>
-    )
+  return (
+    <ThemeContext.Provider value={{ dark, toggleSwitch }}>
+      <StyledThemeProvider theme={theme}>
+        <CssBaseline />
+        {props.children}
+      </StyledThemeProvider>
+    </ThemeContext.Provider>
+  );
 }
 
 export default ThemeProvider;
