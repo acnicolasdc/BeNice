@@ -29,7 +29,7 @@
   },
   "scripts": {
     "start": "env-cmd -f .env.production craco start",
-    "build:staging": "env-cmd -f .env.staging craco build",
+    "dev": "env-cmd -f .env.development craco build",
     "build": "craco build",
     "test": "craco test",
     "eject": "react-scripts eject"
