@@ -12,19 +12,20 @@ function SessionProvider({ children }) {
 
   useLayoutEffect(() => {
     //Manejemos la sesion asi
-    let userSession = getStorage('user-session');
+    // deleteSession();
+    let userSession = getStorage('user-session-benice');
     if (userSession) {
       setSession(true);
     }
   }, [session]);
 
   const deleteSession = () => {
-    deleteStorage('user-session');
+    deleteStorage('user-session-benice');
     setSession(false);
   };
 
   const createSession = (session) => {
-    setStorage('user-session', JSON.stringify(session));
+    setStorage('user-session-benice', JSON.stringify(session));
     setSession(true);
   };
 

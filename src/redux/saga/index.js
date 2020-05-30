@@ -1,8 +1,6 @@
 import { all } from 'redux-saga/effects';
-import watchTestAsync from './test.saga';
+import watchAuthAsync from './auth.saga';
 
 export default function* rootSaga() {
-  yield all([
-    watchTestAsync(),
-  ]);
+  yield all([watchAuthAsync()]);
 }
