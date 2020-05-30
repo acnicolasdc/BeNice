@@ -1,10 +1,9 @@
 import React from 'react'
+import ProfileContainer from '@/containers/Profile'
 
 const Test = () => {
     return (
-        <div>
-            <h1>Welcome to the jungle</h1>
-        </div>
+        <ProfileContainer/>
     )
 }
 
