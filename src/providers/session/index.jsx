@@ -12,7 +12,7 @@ function SessionProvider({ children }) {
 
   useLayoutEffect(() => {
     //Manejemos la sesion asi
-    // deleteSession();
+    //deleteSession();
     let userSession = getStorage('user-session-benice');
     if (userSession) {
       setSession(true);
