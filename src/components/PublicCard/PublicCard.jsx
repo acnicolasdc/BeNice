@@ -8,9 +8,21 @@ import Avatar from '@material-ui/core/Avatar';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import FavoriteBorderIcon from '@material-ui/icons/FavoriteBorder';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import Skeleton from '@material-ui/lab/Skeleton';
 
-const PublicCard = ({ loading, name, date, avatar, image, description }) => {
+const PublicCard = ({
+  loading,
+  name,
+  date,
+  avatar,
+  image,
+  description,
+  liked,
+  count_likes,
+  onClick,
+}) => {
   const classes = useStyles();
 
   return (
@@ -30,9 +42,23 @@ const PublicCard = ({ loading, name, date, avatar, image, description }) => {
         }
         action={
           loading ? null : (
-            <IconButton aria-label="settings">
-              <MoreVertIcon />
-            </IconButton>
+            <div
+              style={{
+                display: 'flex',
+                flexDirection: 'row',
+                justifyContent: 'center',
+                alignItems: 'center',
+              }}
+            >
+              {count_likes > 0 && (
+                <Typography variant="body2" color="textSecondary" component="p">
+                  {count_likes} likes
+                </Typography>
+              )}
+              <IconButton aria-label="settings" onClick={onClick}>
+                {liked ? <FavoriteIcon /> : <FavoriteBorderIcon />}
+              </IconButton>
+            </div>
           )
         }
         title={
