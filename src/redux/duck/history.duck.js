@@ -6,24 +6,26 @@ const defaultState = {
   data: [],
 };
 
-export const { loginRequest, loginSuccess, loginFailure } = createActions({
-  LOGIN_REQUEST: (data) => ({ ...defaultState, fetching: true, data }),
-  LOGIN_SUCCESS: ({ data, message }) => ({
-    data,
-    message,
-    fetching: false,
-    success: true,
-  }),
-  LOGIN_FAILURE: (message) => ({
-    message,
-    fetching: false,
-    error: true,
-  }),
-});
-
-const auth = handleActions(
+export const { historyRequest, historySuccess, historyFailure } = createActions(
   {
-    [loginRequest]: (
+    HISTORY_REQUEST: (data) => ({ ...defaultState, fetching: true, data }),
+    HISTORY_SUCCESS: ({ data, message }) => ({
+      data,
+      message,
+      fetching: false,
+      success: true,
+    }),
+    HISTORY_FAILURE: (message) => ({
+      message,
+      fetching: false,
+      error: true,
+    }),
+  }
+);
+
+const history = handleActions(
+  {
+    [historyRequest]: (
       draft,
       { payload: { message, fetching, success, error } }
     ) => ({
@@ -33,7 +35,7 @@ const auth = handleActions(
       success,
       error,
     }),
-    [loginSuccess]: (
+    [historySuccess]: (
       draft,
       { payload: { message, fetching, success, data } }
     ) => ({
@@ -43,7 +45,7 @@ const auth = handleActions(
       success,
       data,
     }),
-    [loginFailure]: (draft, { payload: { message, fetching, error } }) => ({
+    [historyFailure]: (draft, { payload: { message, fetching, error } }) => ({
       ...draft,
       message,
       fetching,
@@ -53,4 +55,4 @@ const auth = handleActions(
   defaultState
 );
 
-export default auth;
+export default history;
