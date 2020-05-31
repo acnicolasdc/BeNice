@@ -9,9 +9,9 @@ class AxiosManager {
   init() {
     this.setHeader();
     this.handleError();
-    this.setBaseUrl(BASE_URL);
   }
-  api() {
+  api(url = BASE_URL) {
+    this.setBaseUrl(url);
     return this.axiosDefault;
   }
   setBaseUrl(url = BASE_URL) {
@@ -37,4 +37,4 @@ class AxiosManager {
   }
 }
 
-export default new AxiosManager();
+export default AxiosManager;

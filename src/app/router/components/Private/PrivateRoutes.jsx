@@ -1,12 +1,16 @@
 import React from 'react';
 import { Switch } from 'react-router-dom';
-import PublicationRoutes from '@/pages/Publication/routes'
+import DashBoardRoutes from '@/pages/Dashboard/routes';
+import MenuBasicComponent from '@/components/Menu/MenuBasic';
 
 const PrivateRoutes = ({ session, routesSchema }) => {
   return (
-    <Switch>
-    <PublicationRoutes />
-    </Switch>
+    <>
+      <MenuBasicComponent />
+      <Switch>
+        <DashBoardRoutes />
+      </Switch>
+    </>
   );
 };
 
