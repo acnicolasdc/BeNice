@@ -14,6 +14,11 @@ const CreatePublication = () => {
 
     const [imagen, setImagen] = useState('');
     const { paper, avatar, form, submit } = useStyles();
+    const [dataUser, setData] = useState({ nombre: '', userName: '', correo: '', password: '' });
+ 
+    const handleOnChange = (e) => {
+        setData({ ...dataUser, [e.target.name]: e.target.value });
+      };
 
     const arTag = ["Medio ambiente", "Transporte limpio"];
     const uploadFile = async (e) => {
@@ -57,6 +62,8 @@ const CreatePublication = () => {
                         autoComplete="publication"
                         autoFocus
                         multiline
+                        value={dataUser.nombre}
+                        onChange={handleOnChange}
                     />
                      <input
           className="csv-input"
