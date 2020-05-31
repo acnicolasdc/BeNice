@@ -3,13 +3,16 @@ import Auth from './auth.service';
 import Create from './create.service';
 import CreateUser from './createUser.service';
 import History from './history.service';
+import Publication from './publication.service';
 import User from './user.service';
 
 const api = new AxiosManager().api();
 const cloudinary=new AxiosManager().api('https://api.cloudinary.com/v1_1/nreyes-lean');
 
+
 export const auth = new Auth(api);
 export const cloudi = new Create(cloudinary);
 export const createUser = new CreateUser(api);
 export const history = new History(api);
+export const publication = new Publication(api);
 export const user = new User(api);
