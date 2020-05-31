@@ -15,6 +15,7 @@ import { loadUsers } from '@/redux/thunk/auth.thunk';
 import { useDispatch, useSelector } from 'react-redux';
 import { SessionContext } from '@/providers/session';
 import { publicationRequest } from '@/redux/duck/publication.duck';
+import { getStorage, setStorage } from '@/utils/localStorage';
 
 const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess, onFailure }) => {
   const classes = useStyles();
@@ -22,7 +23,13 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
     const handleOnChange = (e) => {
       setDataPublication({ ...dataPublication, [e.target.name]: e.target.value });
       };
+      const [user, setUser] = useState({});
 
+      const getUserData = () => {
+        let userData = getStorage('user-session-benice');
+        userData = JSON.parse(userData);
+        setUser(userData);
+    }
   const currencies = [
     {
       value: 'Environment',
@@ -64,7 +71,7 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
     const file = await response.json();
     console.log(file.secure_url);
     
-    setDataPublication({ ...dataPublication, imagen_url: file.secure_url, ubicacion_id: '1', fecha_registro: new Date().getDate().toString(), usuario_id: '1'});
+    setDataPublication({ ...dataPublication, imagen_url: file.secure_url, ubicacion_id: '1', fecha_registro: new Date().getDate().toString(), usuario_id: user.usuario_id});
 
     setImagen(file.secure_url);
     console.log('datos : '+dataPublication);
