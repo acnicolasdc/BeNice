@@ -9,16 +9,21 @@ class AxiosManager {
   init() {
     this.setHeader();
     this.handleError();
-    this.setBaseUrl(BASE_URL);
   }
-  api() {
+  api(url = BASE_URL) {
+    this.setHeader();
+    this.setBaseUrl(url);
     return this.axiosDefault;
   }
   setBaseUrl(url = BASE_URL) {
     this.axiosDefault.defaults.baseURL = url;
   }
   setHeader(contentType = CONTENT_TYPE) {
+    debugger;
     this.axiosDefault.defaults.headers.post['Content-Type'] = contentType;
+    this.axiosDefault.defaults.headers.post['Access-Control-Allow-Origin']='*';
+    this.axiosDefault.defaults.headers.post['X-Requested-With']='XMLHttpRequest';
+
   }
   handleError() {
     this.axiosDefault.interceptors.response.use(
@@ -37,4 +42,4 @@ class AxiosManager {
   }
 }
 
-export default new AxiosManager();
+export default AxiosManager;
