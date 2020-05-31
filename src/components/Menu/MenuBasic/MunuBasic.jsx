@@ -2,7 +2,7 @@ import React, {useContext, useState} from 'react';
 import { withRouter } from 'react-router'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
 import HomeIcon from '@material-ui/icons/Home';
@@ -19,8 +19,8 @@ const MenuBasicComponent = (props) => {
 
   const handleChange = (event, newValue) => {
     console.log(props)
-    if(newValue === 'account') props.history.push('/Profile')
-    if(newValue === 'home') props.history.push('/')
+    if(newValue === 'publication') props.history.push('/CreatePublication')
+    if(newValue === 'home') props.history.push('/')    
     setValue(newValue);
   };
 
@@ -32,9 +32,9 @@ const MenuBasicComponent = (props) => {
         icon={<HomeIcon />}
       />
       <BottomNavigationAction
-        label="Account"
-        value="account"
-        icon={<AccountCircleIcon />}
+        label="Publication"
+        value="publication"
+        icon={<GroupAddIcon />}
       />
       <BottomNavigationAction
         label={dark ? "Light" : "Dark"}

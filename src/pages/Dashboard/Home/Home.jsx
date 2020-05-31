@@ -9,9 +9,9 @@ const Home = () => {
   return (
     <GridBase SecondChildren={() =>(
       <>
-      <div className={content}>
+      {/* <div className={content}>
         <CreatePost />
-      </div>
+      </div> */}
       <HistoryList />
       </>
     )}/>
