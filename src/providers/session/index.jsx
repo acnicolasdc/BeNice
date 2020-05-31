@@ -5,6 +5,7 @@ export const SessionContext = React.createContext({
   session: false,
   deleteSession: () => {},
   createSession: () => {},
+  createNewUser:()=>{},
 });
 
 function SessionProvider({ children }) {
@@ -29,8 +30,14 @@ function SessionProvider({ children }) {
     setSession(true);
   };
 
+  const createNewUser = () => {
+    console.log('entro')
+    deleteStorage('user-session-benice');
+    setSession(false);
+  };
+
   return (
-    <SessionContext.Provider value={{ session, createSession, deleteSession }}>
+    <SessionContext.Provider value={{ session, createSession, deleteSession,createNewUser }}>
       {children}
     </SessionContext.Provider>
   );

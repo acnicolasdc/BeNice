@@ -2,16 +2,15 @@ import React, { useContext, useState } from 'react';
 import Snackbar from '@material-ui/core/Snackbar';
 import MuiAlert from '@material-ui/lab/Alert';
 import { SessionContext } from '@/providers/session';
-import Login from './containers/Login';
-import { useStyles } from './SignIn.style';
+import CreateUser from './containers/CreateUser';
+import { useStyles } from './Register.style';
 
-const SignIn = () => {
+const Register = () => {
   const [open, setOpen] = useState(false);
   const { main } = useStyles();
-  const { createSession } = useContext(SessionContext);
+  const { createNewUser } = useContext(SessionContext);
   const onSuccess = (data) => {
-    debugger
-    createSession(data);
+    createNewUser(data);
   };
   const onFailure = () => {
     setOpen(true);
@@ -34,9 +33,9 @@ const SignIn = () => {
           User or Password wrong
         </MuiAlert>
       </Snackbar>
-      <Login onSuccess={onSuccess} onFailure={onFailure} />
+      <CreateUser onSuccess={onSuccess} onFailure={onFailure} />
     </div>
   );
 };
 
-export default SignIn;
+export default Register;
