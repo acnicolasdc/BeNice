@@ -1,4 +1,5 @@
 import React, { useEffect } from 'react';
+import moment from 'moment';
 import PublicCard from '@/components/PublicCard';
 import { useDispatch, useSelector } from 'react-redux';
 import { useTrail, animated } from 'react-spring';
@@ -48,6 +49,12 @@ const HistoryList = () => {
       }
     }
   };
+  const parseTime = (time) => {
+    console.log(time);
+    let d = moment.duration(time, 'milliseconds');
+    let hours = Math.floor(d.asHours());
+    return hours;
+  };
   console.log(data);
   const { container } = useStyles();
   return (
@@ -61,6 +68,10 @@ const HistoryList = () => {
               description={data[index].descripcion}
               count_likes={data[index].count_likes}
               liked={data[index].like_estado === 'true'}
+              name={data[index].nombre_suario}
+              image={data[index].imagen_url}
+              avatar={`https://api.adorable.io/avatars/268/abott@${data[index].nombre_suario}.png`}
+              date={`${parseTime(data[index].fecha_registro)} hours ago`}
               onClick={() =>
                 sendLike(
                   data[index].publicacion_id,

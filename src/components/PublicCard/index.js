@@ -17,7 +17,7 @@ PublicCard.propTypes = {
 PublicCard.defaultProps = {
   loading: false,
   liked: false,
-  avatar: logo,
+  avatar: 'https://api.adorable.io/avatars/268/abott@adorable.png',
   count_likes: 0,
   name: 'Default User',
   date: '1 hours ago',

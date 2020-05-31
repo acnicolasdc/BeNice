@@ -1,5 +1,5 @@
-import React, {useContext, useState} from 'react';
-import { withRouter } from 'react-router'
+import React, { useContext, useState } from 'react';
+import { withRouter } from 'react-router';
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 // import GroupAddIcon from '@material-ui/icons/GroupAdd';
@@ -18,10 +18,9 @@ const MenuBasicComponent = (props) => {
   const { deleteSession } = useContext(SessionContext);
 
   const handleChange = (event, newValue) => {
-    debugger
-    console.log(props)
-    if(newValue === 'publication') props.history.push('/CreatePublication')
-    if(newValue === 'home') props.history.push('/')    
+    console.log(props);
+    if (newValue === 'publication') props.history.push('/CreatePublication');
+    if (newValue === 'home') props.history.push('/');
     setValue(newValue);
   };
 
@@ -38,21 +37,21 @@ const MenuBasicComponent = (props) => {
         icon={<GroupAddIcon />}
       /> */}
       <BottomNavigationAction
-        label={dark ? "Light" : "Dark"}
+        label={dark ? 'Light' : 'Dark'}
         value="theme"
         onClick={toggleSwitch}
         icon={<Brightness4Icon />}
       />
       <BottomNavigationAction
         label="Exit"
-        value="exit"        
+        value="exit"
         onClick={() => {
-          deleteSession()          
+          deleteSession();
         }}
         icon={<ExitToAppIcon />}
       />
     </BottomNavigation>
   );
-}
+};
 
 export default withRouter(MenuBasicComponent);

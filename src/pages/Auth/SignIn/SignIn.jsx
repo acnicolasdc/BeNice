@@ -10,7 +10,6 @@ const SignIn = () => {
   const { main } = useStyles();
   const { createSession } = useContext(SessionContext);
   const onSuccess = (data) => {
-    debugger
     createSession(data);
   };
   const onFailure = () => {
