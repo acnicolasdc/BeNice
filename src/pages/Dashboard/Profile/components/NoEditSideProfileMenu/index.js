@@ -1,8 +1,8 @@
 import ProfileComponent from "./Profile";
 
 ProfileComponent.defaultProps = {
-    firstName: "Item",
-    lastName: "Item",
+    name: "Item",
+    mail: "Item",
     username: "Item",
     password: "Item",
     onClick: () => {}

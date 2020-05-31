@@ -8,7 +8,7 @@ import useStyles from './Profile.styles'
 import logo from '@/assets/images/logo.png';
 import Paper from '@material-ui/core/Paper';
 
-export default ({onClick, firstName, lastName, username,  password }) => {
+export default ({onClick, name, mail, username,  password }) => {
   const classes = useStyles();
 
   return (
@@ -23,12 +23,12 @@ export default ({onClick, firstName, lastName, username,  password }) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography>
-                {`FirstName: ${firstName}`}
+                {`Name: ${name}`}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography>
-                {`LastName: ${lastName}`}
+                {`Email: ${mail}`}
               </Typography>
             </Grid>
             <Grid item xs={12}>
