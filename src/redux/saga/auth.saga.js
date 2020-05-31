@@ -13,7 +13,7 @@ function* loginRequestAsync(data) {
 }
 
 function* watchAuthAsync() {
-  yield takeLatest(loginRequest, loginRequestAsync);
+  yield takeLatest('loginRequestotototo', loginRequestAsync);
 }
 
 export default watchAuthAsync;

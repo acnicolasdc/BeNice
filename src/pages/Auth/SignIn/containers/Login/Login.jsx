@@ -13,17 +13,14 @@ import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import Copyright from './components/Copyright';
 import { useStyles } from './Login.style';
+import { loadUsers } from '@/redux/thunk/auth.thunk';
 
 const SignIn = ({ onSuccess, onFailure }) => {
   const dispatch = useDispatch();
   const [errors, setErrors] = useState({ user: false, password: false });
   const [dataUser, setData] = useState({ user: '', password: '' });
   const { root, image, paper, avatar, form, submit, title } = useStyles();
-  const { fetching, error, success, data } = useSelector((state) => state.auth);
-  useEffect(() => {
-    if (success) onSuccess(data);
-    if (error) onFailure();
-  }, [success, error]);
+  const { fetching } = useSelector((state) => state.auth);
   const handleError = (dataToSend) => {
     let inputErrors = {};
     let hasError = false;
@@ -40,7 +37,14 @@ const SignIn = ({ onSuccess, onFailure }) => {
     e.preventDefault();
     const hasError = handleError(dataUser);
     if (hasError) return;
-    dispatch(loginRequest(dataUser));
+    const promise = dispatch(loadUsers(dataUser));
+    promise
+      .then((response) => {
+        onSuccess(response);
+      })
+      .catch((error) => {
+        onFailure(error);
+      });
   };
   const handleOnChange = (e) => {
     setData({ ...dataUser, [e.target.name]: e.target.value });
