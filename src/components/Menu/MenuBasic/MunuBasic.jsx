@@ -18,6 +18,7 @@ const MenuBasicComponent = (props) => {
   const { deleteSession } = useContext(SessionContext);
 
   const handleChange = (event, newValue) => {
+    debugger
     console.log(props)
     if(newValue === 'publication') props.history.push('/CreatePublication')
     if(newValue === 'home') props.history.push('/')    

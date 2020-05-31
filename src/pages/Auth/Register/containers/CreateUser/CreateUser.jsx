@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { loginRequest } from '@/redux/duck/auth.duck';
+import { createUserRequest } from '@/redux/duck/createUser.duck';
 import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
@@ -10,15 +10,17 @@ import logo from '@/assets/images/logo.png';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import Typography from '@material-ui/core/Typography';
 import { useStyles } from './Create.style';
+import { withRouter } from 'react-router'
+import PropTypes from "prop-types";
 
-const Register = ({ onSuccess, onFailure }) => {
+const Register = ({ onSuccess, onFailure ,history}) => {
   const dispatch = useDispatch();
-  const [errors, setErrors] = useState({ user: false, password: false });
-  const [dataUser, setData] = useState({ user: '', password: '' });
+  const [errors, setErrors] = useState({ nombre: false, userName: false, correo: false, password: false });
+  const [dataUser, setData] = useState({ nombre: '', userName: '', correo: '', password: '' });
   const { root, image, paper, avatar, form, submit, title } = useStyles();
-  const { fetching, error, success, data } = useSelector((state) => state.auth);
+  const { fetching, error, success, data } = useSelector((state) => state.createUser);
+
   useEffect(() => {
-    if (success) onSuccess(data);
     if (error) onFailure();
   }, [success, error]);
   const handleError = (dataToSend) => {
@@ -37,13 +39,13 @@ const Register = ({ onSuccess, onFailure }) => {
     e.preventDefault();
     const hasError = handleError(dataUser);
     if (hasError) return;
-    dispatch(loginRequest(dataUser));
+    dispatch(createUserRequest(dataUser));
+    history.push('/');
   };
   const handleOnChange = (e) => {
     setData({ ...dataUser, [e.target.name]: e.target.value });
   };
 
-  const classes = useStyles();
   return (
       <Grid container component="main" className={root}>
       <Grid item xs={false} sm={4} md={7} className={image} />
@@ -55,27 +57,33 @@ const Register = ({ onSuccess, onFailure }) => {
           </Typography>
           <form className={form} noValidate>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12} >
               <TextField
-                autoComplete="fname"
-                name="firstName"
+                autoComplete="nombre"
+                name="nombre"
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="nombre"
+                label="Full Name"
                 autoFocus
+                onChange={handleOnChange}
+                error={errors['nombre']}
+                margin="normal"
+                value={dataUser.nombre}
               />
-            </Grid>
-            <Grid item xs={12} sm={6}>
               <TextField
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                id="userName"
+                label="User Name"
+                name="userName"
+                autoComplete="userName"
+                onChange={handleOnChange}
+                error={errors['userName']}
+                margin="normal"
+                value={dataUser.userName}
               />
             </Grid>
             <Grid item xs={12}>
@@ -83,10 +91,14 @@ const Register = ({ onSuccess, onFailure }) => {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
+                id="correo"
                 label="Email Address"
-                name="email"
-                autoComplete="email"
+                name="correo"
+                autoComplete="correo"
+                onChange={handleOnChange}
+                error={errors['correo']}
+                margin="normal"
+                value={dataUser.correo}
               />
             </Grid>
             <Grid item xs={12}>
@@ -99,6 +111,10 @@ const Register = ({ onSuccess, onFailure }) => {
                 type="password"
                 id="password"
                 autoComplete="current-password"
+                onChange={handleOnChange}
+                error={errors['password']}
+                margin="normal"
+                value={dataUser.password}
               />
             </Grid>
           </Grid>
@@ -109,7 +125,7 @@ const Register = ({ onSuccess, onFailure }) => {
               variant="contained"
               color="primary"
               className={submit}
-              onClick={handleSubmit}
+              onClick={ handleSubmit}
             >
               {fetching ? <CircularProgress /> : 'Sign In'}
             </Button>
@@ -120,4 +136,4 @@ const Register = ({ onSuccess, onFailure }) => {
   );
 };
 
-export default Register;
+export default withRouter(Register);
