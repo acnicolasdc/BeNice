@@ -6,6 +6,7 @@ import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
+import FavoriteIcon from '@material-ui/icons/Favorite';
 import useStyles from './TableSide.styles';
 
 export default function AcccessibleTable({rows}) {
@@ -23,8 +24,8 @@ export default function AcccessibleTable({rows}) {
         <TableBody>
           {rows.map((row) => (
             <TableRow key={row.theme}>
-              <TableCell align="left">{row.theme}</TableCell>
-              <TableCell align="center">{row.likes}</TableCell>
+              <TableCell align="left">{row.theme} </TableCell>
+              <TableCell align="center">{row.likes} <FavoriteIcon style={{height:10, width:10}}/></TableCell>
             </TableRow>
           ))}
         </TableBody>

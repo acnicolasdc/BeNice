@@ -27,10 +27,9 @@ export default ({onClick, name, mail, username,  password, updateUserData }) => 
     <Paper className={classes.container}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar alt="Ted talk" src={logo} />
-        <Typography component="h1" variant="h5">
-          Profile
-        </Typography>
+      <Avatar alt="Ted talk" src={`https://api.adorable.io/avatars/268/abott@${name}.png`} 
+      style={{height: 80, width: 80}}
+      />
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
@@ -93,6 +92,16 @@ export default ({onClick, name, mail, username,  password, updateUserData }) => 
             onClick={() => handleOnClick()}
           >
             Update
+          </Button>
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            color="danger"
+            className={classes.submit}
+            onClick={() => onClick()}
+          >
+            Cancel
           </Button>
         </form>
       </div>
