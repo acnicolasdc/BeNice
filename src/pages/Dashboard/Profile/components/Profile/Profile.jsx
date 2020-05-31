@@ -12,7 +12,7 @@ export default function SignUp() {
   const classes = useStyles();
 
   return (
-    <div>
+    <div style={{width: 500}}>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>

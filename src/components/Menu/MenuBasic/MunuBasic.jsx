@@ -1,17 +1,26 @@
-import React from 'react';
+import React, {useContext, useState} from 'react';
+import { withRouter } from 'react-router'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import FolderIcon from '@material-ui/icons/Folder';
-import RestoreIcon from '@material-ui/icons/Restore';
-import FavoriteIcon from '@material-ui/icons/Favorite';
-import LocationOnIcon from '@material-ui/icons/LocationOn';
+import AccountCircleIcon from '@material-ui/icons/AccountCircle';
+import Brightness4Icon from '@material-ui/icons/Brightness4';
+import ExitToAppIcon from '@material-ui/icons/ExitToApp';
+import HomeIcon from '@material-ui/icons/Home';
 import useStyles from './MenuBasic.styles';
+import { ThemeContext } from '@/providers/theme';
+import { SessionContext } from '@/providers/session';
 
-export default function LabelBottomNavigation() {
+const MenuBasicComponent = (props) => {
   const { root } = useStyles();
-  const [value, setValue] = React.useState('home');
+  const [value, setValue] = useState('home');
+
+  const { dark, toggleSwitch } = useContext(ThemeContext);
+  const { deleteSession } = useContext(SessionContext);
 
   const handleChange = (event, newValue) => {
+    console.log(props)
+    if(newValue === 'account') props.history.push('/Profile')
+    if(newValue === 'home') props.history.push('/')
     setValue(newValue);
   };
 
@@ -20,23 +29,29 @@ export default function LabelBottomNavigation() {
       <BottomNavigationAction
         label="Home"
         value="home"
-        icon={<RestoreIcon />}
+        icon={<HomeIcon />}
       />
       <BottomNavigationAction
-        label="Favorites"
-        value="favorites"
-        icon={<FavoriteIcon />}
+        label="Account"
+        value="account"
+        icon={<AccountCircleIcon />}
       />
       <BottomNavigationAction
-        label="Nearby"
-        value="nearby"
-        icon={<LocationOnIcon />}
+        label={dark ? "Light" : "Dark"}
+        value="theme"
+        onClick={toggleSwitch}
+        icon={<Brightness4Icon />}
       />
       <BottomNavigationAction
-        label="Folder"
-        value="folder"
-        icon={<FolderIcon />}
+        label="Exit"
+        value="exit"        
+        onClick={() => {
+          deleteSession()          
+        }}
+        icon={<ExitToAppIcon />}
       />
     </BottomNavigation>
   );
 }
+
+export default withRouter(MenuBasicComponent);

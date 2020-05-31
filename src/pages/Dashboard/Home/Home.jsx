@@ -1,18 +1,20 @@
 import React from 'react';
 import HistoryList from './containers/HistoryList';
+import CreatePost from '@/containers/CreatePost';
+import { useStyles } from './Home.styles';
+import GridBase from '@/components/Grid/GridBase'
 
 const Home = () => {
+  const { content } = useStyles();
   return (
-    <div
-      style={{
-        width: '100%',
-        display: 'flex',
-        justifyContent: 'center',
-        paddingTop: 80,
-      }}
-    >
+    <GridBase SecondChildren={() =>(
+      <>
+      <div className={content}>
+        <CreatePost />
+      </div>
       <HistoryList />
-    </div>
+      </>
+    )}/>
   );
 };
 
