@@ -77,31 +77,33 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
             className={classes.inputHeader} />
         </div>
         <br />
-            {imagen && <img width='100%' style={{padding:"0% 7% 1% 13%" }} src={imagen} alt='Upload Preview' />}
+        {imagen && <img style={{ padding: "0% 7% 1% 13%", maxWidth: '100%' }} src={imagen} alt='Upload Preview' />}
+
         <CardContent>
+          <TextField
+            id="standard-select-currency"
+            select
+            label="Good Action"
+            value={currency}
+            onChange={handleChange}
+            style={{ position: "relative", float: "left", left: "11%", width: '25ch' }}
+          >
+            {currencies.map((option) => (
+              <MenuItem key={option.value} value={option.value}>
+                {option.value}
+              </MenuItem>
+            ))}
+          </TextField>
           <div className={classes.mediaOption}>
 
 
             <label class="custom-file-upload">
-              <input type="file" style={{ display: "none" }} onChange={(e) => uploadFile(e)}/>
+              <input type="file" style={{ display: "none" }} onChange={(e) => uploadFile(e)} />
               <AddAPhotoIcon className={classes.divider} color="secondary" />
             </label>
 
 
-            <TextField
-          id="standard-select-currency"
-          select
-          label="Good Action"
-          value={currency}
-          onChange={handleChange}
-          style={{position:"absolute",float:"left",left:"31%",width: '25ch'}}
-        >
-          {currencies.map((option) => (
-            <MenuItem key={option.value} value={option.value}>
-              {option.value}
-            </MenuItem>
-          ))}
-        </TextField>
+
 
             <Divider orientation="vertical" flexItem />
             <Button
