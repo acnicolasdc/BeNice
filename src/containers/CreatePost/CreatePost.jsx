@@ -54,7 +54,19 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
 
   const { container } = useStylesCard();
   const [imagen, setImagen] = useState('');
-  const [dataPublication, setDataPublication] = useState({ imagen_url: imagen, tema_id: '1', descripcion: '',ubicacion_id:'1' });
+  const [dataPublication, setDataPublication] = useState({ 
+    imagen_url: imagen, 
+    tema_id: '1', 
+    descripcion: '',
+    ubicacion_id:'1',
+  
+    fecha_texto: '',
+    usuario_id:'',
+    fecha_diferencia_segundos: '',
+    like_estado:'',
+      count_likes: '',
+      fecha_registro: '',
+      });
  
   const uploadFile = async (e) => {
     const files = e.target.files;
@@ -71,7 +83,17 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
     const file = await response.json();
     console.log(file.secure_url);
     
-    setDataPublication({ ...dataPublication, imagen_url: file.secure_url, ubicacion_id: '1', fecha_registro: new Date().getDate().toString(), usuario_id: user.usuario_id});
+    setDataPublication({ ...dataPublication, 
+
+      fecha_texto: new Date().getDate().toString(),
+      ubicacion_id: 1,
+      imagen_url: file.secure_url,
+      usuario_id: user.usuario_id,
+      fecha_diferencia_segundos: -17970,
+      like_estado: "false",
+        count_likes: 0,
+        fecha_registro: new Date().getDate()    
+    });
 
     setImagen(file.secure_url);
     console.log('datos : '+dataPublication);
