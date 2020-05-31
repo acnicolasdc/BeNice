@@ -72,6 +72,7 @@ const HistoryList = () => {
               image={data[index].imagen_url}
               avatar={`https://api.adorable.io/avatars/268/abott@${data[index].nombre_suario}.png`}
               date={`${parseTime(data[index].fecha_registro)} hours ago`}
+              tag={data[index].tema_nombre}
               onClick={() =>
                 sendLike(
                   data[index].publicacion_id,
