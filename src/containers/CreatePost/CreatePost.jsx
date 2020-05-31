@@ -77,7 +77,7 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
             className={classes.inputHeader} />
         </div>
         <br />
-        {imagen && <img style={{ padding: "0% 7% 1% 13%", maxWidth: '100%' }} src={imagen} alt='Upload Preview' />}
+        {imagen && <img style={{ padding: "0% 7% 1% 13%", maxWidth: '100%',maxHeight:'200px' }} src={imagen} alt='Upload Preview' />}
 
         <CardContent>
           <TextField
