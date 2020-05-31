@@ -5,33 +5,47 @@ import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
 // import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-// import HomeIcon from '@material-ui/icons/Home';
+import HomeIcon from '@material-ui/icons/Home';
 import useStyles from './MenuBasic.styles';
 import { ThemeContext } from '@/providers/theme';
 import { SessionContext } from '@/providers/session';
+import { useDispatch } from 'react-redux';
+import { getStorage } from '@/utils/localStorage';
+import { historyRequest } from '@/redux/duck/history.duck';
 
 const MenuBasicComponent = (props) => {
   const { root } = useStyles();
   const [value, setValue] = useState('home');
-
+  const dispatch = useDispatch();
   const { dark, toggleSwitch } = useContext(ThemeContext);
   const { deleteSession } = useContext(SessionContext);
 
+  const changeHistory = () => {
+    let userSession = getUser();
+    if (userSession) {
+      dispatch(
+        historyRequest({ usuario_id: userSession.usuario_id, general: 1 })
+      );
+    }
+  };
+  const getUser = () => {
+    let userSession = getStorage('user-session-benice');
+    if (userSession) {
+      userSession = JSON.parse(userSession);
+    }
+    return userSession;
+  };
   const handleChange = (event, newValue) => {
     console.log(props);
     if (newValue === 'publication') props.history.push('/CreatePublication');
-    if (newValue === 'home') props.history.push('/');
+    if (newValue === 'home') changeHistory();
     setValue(newValue);
   };
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={root}>
-      {/* <BottomNavigationAction
-        label="Home"
-        value="home"
-        icon={<HomeIcon />}
-      />
-      <BottomNavigationAction
+      <BottomNavigationAction label="Home" value="home" icon={<HomeIcon />} />
+      {/*<BottomNavigationAction
         label="Publication"
         value="publication"
         icon={<GroupAddIcon />}

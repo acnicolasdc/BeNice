@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import moment from 'moment';
 import PublicCard from '@/components/PublicCard';
 import { useDispatch, useSelector } from 'react-redux';
@@ -11,13 +11,16 @@ import { getStorage } from '@/utils/localStorage';
 
 const HistoryList = () => {
   const dispatch = useDispatch();
+  const [general, setGeneral] = useState(1);
+  const [userToSee, setToSee] = useState(null);
   const { fetching, data } = useSelector((state) => state.history);
   useEffect(() => {
     let userSession = getUser();
     if (userSession) {
-      dispatch(historyRequest({ usuario_id: userSession.usuario_id }));
+      let id = userToSee === null ? userSession.usuario_id : userToSee;
+      dispatch(historyRequest({ usuario_id: id, general: general }));
     }
-  }, [dispatch]);
+  }, [dispatch, general, userToSee]);
   const trail = useTrail(fetching ? 5 : data.length, {
     from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
     to: { opacity: 1, transform: 'translate3d(0,0px,0)' },
@@ -50,10 +53,8 @@ const HistoryList = () => {
     }
   };
   const parseTime = (time) => {
-    console.log(time);
-    let d = moment.duration(time, 'milliseconds');
-    let hours = Math.floor(d.asHours());
-    return hours;
+    let hour = moment(time).format('hh:mm');
+    return hour;
   };
   console.log(data);
   const { container } = useStyles();
@@ -65,13 +66,17 @@ const HistoryList = () => {
             <PublicCard loading={true} />
           ) : (
             <PublicCard
+              onClickUser={() => {
+                setGeneral(0);
+                setToSee(data[index].usuario_id);
+              }}
               description={data[index].descripcion}
               count_likes={data[index].count_likes}
               liked={data[index].like_estado === 'true'}
               name={data[index].nombre_suario}
               image={data[index].imagen_url}
               avatar={`https://api.adorable.io/avatars/268/abott@${data[index].nombre_suario}.png`}
-              date={`${parseTime(data[index].fecha_registro)} hours ago`}
+              date={`Hour: ${parseTime(data[index].fecha_texto)}`}
               tag={data[index].tema_nombre}
               onClick={() =>
                 sendLike(

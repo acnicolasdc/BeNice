@@ -23,6 +23,7 @@ const PublicCard = ({
   count_likes,
   onClick,
   tag,
+  onClickUser,
 }) => {
   const classes = useStyles();
 
@@ -38,7 +39,7 @@ const PublicCard = ({
               height={40}
             />
           ) : (
-            <Avatar alt="Ted talk" src={avatar} />
+            <Avatar alt="Ted talk" src={avatar} onClick={onClickUser} />
           )
         }
         action={

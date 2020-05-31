@@ -1,10 +1,5 @@
 export default function (api) {
   return {
-    all: (user) =>
-      api.get('/publicaciones', {
-        params: {
-          usuario_id: user,
-        },
-      }),
+    all: (user) => api.post('/user/historys', user),
   };
 }
