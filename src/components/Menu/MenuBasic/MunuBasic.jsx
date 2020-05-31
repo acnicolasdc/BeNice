@@ -2,10 +2,10 @@ import React, {useContext, useState} from 'react';
 import { withRouter } from 'react-router'
 import BottomNavigation from '@material-ui/core/BottomNavigation';
 import BottomNavigationAction from '@material-ui/core/BottomNavigationAction';
-import GroupAddIcon from '@material-ui/icons/GroupAdd';
+// import GroupAddIcon from '@material-ui/icons/GroupAdd';
 import Brightness4Icon from '@material-ui/icons/Brightness4';
 import ExitToAppIcon from '@material-ui/icons/ExitToApp';
-import HomeIcon from '@material-ui/icons/Home';
+// import HomeIcon from '@material-ui/icons/Home';
 import useStyles from './MenuBasic.styles';
 import { ThemeContext } from '@/providers/theme';
 import { SessionContext } from '@/providers/session';
@@ -27,7 +27,7 @@ const MenuBasicComponent = (props) => {
 
   return (
     <BottomNavigation value={value} onChange={handleChange} className={root}>
-      <BottomNavigationAction
+      {/* <BottomNavigationAction
         label="Home"
         value="home"
         icon={<HomeIcon />}
@@ -36,7 +36,7 @@ const MenuBasicComponent = (props) => {
         label="Publication"
         value="publication"
         icon={<GroupAddIcon />}
-      />
+      /> */}
       <BottomNavigationAction
         label={dark ? "Light" : "Dark"}
         value="theme"

@@ -10,7 +10,6 @@ import Button from '@material-ui/core/Button';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
 import TextField from '@material-ui/core/TextField';
 import { useStylesCard } from '../../pages/Dashboard/Home/containers/HistoryList/HistoryList.style';
-import { makeStyles } from '@material-ui/core/styles';
 import MenuItem from '@material-ui/core/MenuItem';
 
 const CreatePost = ({ loading, name, date, avatar, image, description }) => {
@@ -33,7 +32,6 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
     setCurrency(event.target.value);
   };
 
-
   const { container } = useStylesCard();
   const [imagen, setImagen] = useState('');
   const uploadFile = async (e) => {
@@ -45,14 +43,12 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
       'https://api.cloudinary.com/v1_1/nreyes-lean/image/upload/',
       {
         method: 'POST',
-        body: data
+        body: data,
       }
     );
     const file = await response.json();
-    console.log(file.secure_url)
-    setImagen(
-      file.secure_url,
-    );
+    console.log(file.secure_url);
+    setImagen(file.secure_url);
   };
 
   return (
@@ -69,16 +65,28 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
                   height={40}
                 />
               ) : (
-                  <Avatar alt="Ted talk" src={avatar} />
-                )
+                <Avatar alt="Ted talk" src={avatar} />
+              )
             }
           />
-          <TextField id="standard-basic" label="Standard"
-            className={classes.inputHeader} />
+          <TextField
+            id="standard-basic"
+            label="Standard"
+            className={classes.inputHeader}
+          />
         </div>
         <br />
-        {imagen && <img style={{ padding: "0% 7% 1% 13%", maxWidth: '100%',maxHeight:'200px' }} src={imagen} alt='Upload Preview' />}
-
+        {imagen && (
+          <img
+            style={{
+              padding: '0% 7% 1% 13%',
+              maxWidth: '100%',
+              maxHeight: '200px',
+            }}
+            src={imagen}
+            alt="Upload Preview"
+          />
+        )}
         <CardContent>
           <TextField
             id="standard-select-currency"
@@ -86,7 +94,12 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
             label="Good Action"
             value={currency}
             onChange={handleChange}
-            style={{ position: "relative", float: "left", left: "11%", width: '25ch' }}
+            style={{
+              position: 'relative',
+              float: 'left',
+              left: '11%',
+              width: '25ch',
+            }}
           >
             {currencies.map((option) => (
               <MenuItem key={option.value} value={option.value}>
@@ -95,16 +108,14 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
             ))}
           </TextField>
           <div className={classes.mediaOption}>
-
-
-            <label class="custom-file-upload">
-              <input type="file" style={{ display: "none" }} onChange={(e) => uploadFile(e)} />
+            <label className="custom-file-upload">
+              <input
+                type="file"
+                style={{ display: 'none' }}
+                onChange={(e) => uploadFile(e)}
+              />
               <AddAPhotoIcon className={classes.divider} color="secondary" />
             </label>
-
-
-
-
             <Divider orientation="vertical" flexItem />
             <Button
               variant="contained"
@@ -112,7 +123,7 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
               className={classes.button}
             >
               Publish
-          </Button>
+            </Button>
           </div>
         </CardContent>
       </Card>
