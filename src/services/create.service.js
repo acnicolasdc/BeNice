@@ -1,6 +1,7 @@
 export default function (api) {
     return {
-      create: (data) => api.post('https://api.cloudinary.com/v1_1/nreyes-lean/image/upload/', data),
+        Create: (data) => api.post('/image/upload/', data, {
+            headers: { "X-Requested-With": "XMLHttpRequest",'Access-Control-Allow-Origin':'*' }}),
     };
   }
   
