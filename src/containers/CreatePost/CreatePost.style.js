@@ -2,8 +2,16 @@ import { makeStyles } from '@material-ui/core/styles';
 
 export const useStyles = makeStyles((theme) => ({
   card: {
-    width: 700,
+    width: '100%',
     margin: theme.spacing(2),
+  },
+  cardHeader:{
+    display: 'flex',
+    msFlexDirection: 'row',
+    alignItems: 'center'
+  },
+  inputHeader:{
+    width: '80%'
   },
   media: {
     height: 400,

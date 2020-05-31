@@ -11,15 +11,15 @@ function SessionProvider({ children }) {
   const [session, setSession] = useState(false);
 
   useLayoutEffect(() => {
-    //Manejemos la sesion asi
-    //deleteSession();
-    let userSession = getStorage('user-session-benice');
-    if (userSession) {
+    let userSession = getStorage('user-session-benice');    
+    console.log(userSession);
+    if (userSession) {      
       setSession(true);
     }
   }, [session]);
 
   const deleteSession = () => {
+    console.log('entro')
     deleteStorage('user-session-benice');
     setSession(false);
   };

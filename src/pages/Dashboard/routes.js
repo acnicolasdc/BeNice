@@ -7,8 +7,7 @@ const DashboardRoutes = () => {
   return (
     <Switch>
       <Route exact path="/" component={Home} />
-      <Route exact path="/profileeee" component={ProfileContainer} />
-      <Route exact path="/Profile" component={ProfileContainer} />
+      <Route path="/Profile" component={ProfileContainer} />
     </Switch>
   );
 };

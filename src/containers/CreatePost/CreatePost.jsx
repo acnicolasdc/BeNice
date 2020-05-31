@@ -8,12 +8,14 @@ import Avatar from '@material-ui/core/Avatar';
 import Skeleton from '@material-ui/lab/Skeleton';
 import Button from '@material-ui/core/Button';
 import AddAPhotoIcon from '@material-ui/icons/AddAPhoto';
+import TextField from '@material-ui/core/TextField';
 
 const CreatePost = ({ loading, name, date, avatar, image, description }) => {
   const classes = useStyles();
 
   return (
     <Card className={classes.card}>
+      <div className={classes.cardHeader}>
       <CardHeader
         avatar={
           loading ? (
@@ -28,6 +30,9 @@ const CreatePost = ({ loading, name, date, avatar, image, description }) => {
           )
         }
       />
+        <TextField id="standard-basic" label="Standard" 
+        className={classes.inputHeader}/>
+        </div>
       <CardContent>
         <div className={classes.mediaOption}>
           <AddAPhotoIcon className={classes.divider} color="secondary" />

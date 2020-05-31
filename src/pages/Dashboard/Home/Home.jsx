@@ -2,16 +2,19 @@ import React from 'react';
 import HistoryList from './containers/HistoryList';
 import CreatePost from '@/containers/CreatePost';
 import { useStyles } from './Home.styles';
+import GridBase from '@/components/Grid/GridBase'
 
 const Home = () => {
-  const { container, content } = useStyles();
+  const { content } = useStyles();
   return (
-    <div className={container}>
+    <GridBase SecondChildren={() =>(
+      <>
       <div className={content}>
         <CreatePost />
       </div>
       <HistoryList />
-    </div>
+      </>
+    )}/>
   );
 };
 
