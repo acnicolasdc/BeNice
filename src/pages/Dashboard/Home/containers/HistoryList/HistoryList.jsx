@@ -5,8 +5,8 @@ import { useStyles } from './HistoryList.style';
 
 const HistoryList = () => {
   const trail = useTrail(10, {
-    from: { marginLeft: -20, opacity: 0, transform: 'translate3d(0,-40px,0)' },
-    to: { marginLeft: 20, opacity: 1, transform: 'translate3d(0,0px,0)' },
+    from: { opacity: 0, transform: 'translate3d(0,-40px,0)' },
+    to: { opacity: 1, transform: 'translate3d(0,0px,0)' },
   });
   const { container } = useStyles();
 

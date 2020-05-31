@@ -5,6 +5,14 @@ export const useStyles = makeStyles((theme) => ({
     justifyContent: 'center',
     alignItems: 'center',
     // backgroundColor: 'red',
-    maxWidth: 750,
+    maxWidth: 700,
+  },
+}));
+export const useStylesCard = makeStyles((theme) => ({
+  container: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    // backgroundColor: 'red',
+    maxWidth: 700,
   },
 }));
