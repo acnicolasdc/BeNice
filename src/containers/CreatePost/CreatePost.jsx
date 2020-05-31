@@ -1,4 +1,4 @@
-import React, { useContext,useState } from 'react';
+import React, { useContext,useState,useEffect } from 'react';
 import { useStyles } from './CreatePost.style';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -28,8 +28,12 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
       const getUserData = () => {
         let userData = getStorage('user-session-benice');
         userData = JSON.parse(userData);
+        console.log('user :' +user.usuario_id);
         setUser(userData);
     }
+    useEffect(() => {
+      getUserData();
+  }, []);
   const currencies = [
     {
       value: 'Environment',
@@ -69,6 +73,7 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
       });
  
   const uploadFile = async (e) => {
+    getUserData();
     const files = e.target.files;
     const data = new FormData();
     data.append('file', files[0]);
@@ -100,6 +105,7 @@ const CreatePost = ({ loading, name, date, avatar, image, description, onSuccess
   };
   const dispatch = useDispatch();
   const handleSubmit = (e) => {
+   
     e.preventDefault();
     if (!dataPublication) return;
     dispatch(publicationRequest(dataPublication));
