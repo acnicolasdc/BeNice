@@ -8,9 +8,9 @@ import { useStyles } from './Register.style';
 const Register = () => {
   const [open, setOpen] = useState(false);
   const { main } = useStyles();
-  const { createSession } = useContext(SessionContext);
+  const { createNewUser } = useContext(SessionContext);
   const onSuccess = (data) => {
-    createSession(data);
+    createNewUser(data);
   };
   const onFailure = () => {
     setOpen(true);
