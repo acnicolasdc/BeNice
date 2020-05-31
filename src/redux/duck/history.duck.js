@@ -6,22 +6,28 @@ const defaultState = {
   data: [],
 };
 
-export const { historyRequest, historySuccess, historyFailure } = createActions(
-  {
-    HISTORY_REQUEST: (data) => ({ ...defaultState, fetching: true, data }),
-    HISTORY_SUCCESS: ({ data, message }) => ({
-      data,
-      message,
-      fetching: false,
-      success: true,
-    }),
-    HISTORY_FAILURE: (message) => ({
-      message,
-      fetching: false,
-      error: true,
-    }),
-  }
-);
+export const {
+  historyRequest,
+  historySuccess,
+  historyFailure,
+  addLike,
+  deleteLike,
+} = createActions({
+  HISTORY_REQUEST: (user) => ({ ...defaultState, fetching: true, user }),
+  HISTORY_SUCCESS: ({ data, message }) => ({
+    data,
+    message,
+    fetching: false,
+    success: true,
+  }),
+  HISTORY_FAILURE: (message) => ({
+    message,
+    fetching: false,
+    error: true,
+  }),
+  ADD_LIKE: (index) => ({ index }),
+  DELETE_LIKE: (index) => ({ index }),
+});
 
 const history = handleActions(
   {
@@ -51,6 +57,18 @@ const history = handleActions(
       fetching,
       error,
     }),
+    [addLike]: (draft, { payload: { index } }) => {
+      let data = [...draft.data];
+      data[index].count_likes = data[index].count_likes + 1;
+      data[index].like_estado = 'true';
+      return { ...draft, data };
+    },
+    [deleteLike]: (draft, { payload: { index } }) => {
+      let data = [...draft.data];
+      data[index].count_likes = data[index].count_likes - 1;
+      data[index].like_estado = 'false';
+      return { ...draft, data };
+    },
   },
   defaultState
 );

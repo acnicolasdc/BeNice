@@ -5,7 +5,7 @@ export default makeStyles((theme) => ({
       position: 'fixed',
       left: 20,
       top: 92,
-      padding: '0px 25px 40px 25px',
+      padding: '0px 25px 10px 25px',
       maxWidth: 250,
     },
     paper: {
@@ -23,6 +23,6 @@ export default makeStyles((theme) => ({
       marginTop: theme.spacing(3),
     },
     submit: {
-      margin: theme.spacing(3, 0, 2),
+      margin: theme.spacing(3, 0, 1),
     },
   }));

@@ -1,5 +1,10 @@
 export default function (api) {
   return {
-    all: (data) => api.get('/publicaciones', data),
+    all: (user) =>
+      api.get('/publicaciones', {
+        params: {
+          usuario_id: user,
+        },
+      }),
   };
 }

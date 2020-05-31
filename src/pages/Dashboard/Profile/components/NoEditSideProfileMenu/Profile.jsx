@@ -5,30 +5,28 @@ import CssBaseline from '@material-ui/core/CssBaseline';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import useStyles from './Profile.styles'
-import logo from '@/assets/images/logo.png';
 import Paper from '@material-ui/core/Paper';
 
-export default ({onClick, firstName, lastName, username,  password }) => {
+export default ({onClick, name, mail, username,  password }) => {
   const classes = useStyles();
 
   return (
     <Paper className={classes.container}>
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar alt="Ted talk" src={logo} />
-        <Typography component="h1" variant="h5">
-          Profile
-        </Typography>
+        <Avatar alt="Ted talk" src={`https://api.adorable.io/avatars/268/abott@${name}.png`} 
+          style={{height: 100, width: 100}}
+        />
         <form className={classes.form} noValidate>
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <Typography>
-                {`FirstName: ${firstName}`}
+                {`Name: ${name}`}
               </Typography>
             </Grid>
             <Grid item xs={12}>
               <Typography>
-                {`LastName: ${lastName}`}
+                {`Email: ${mail}`}
               </Typography>
             </Grid>
             <Grid item xs={12}>

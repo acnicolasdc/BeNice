@@ -6,10 +6,11 @@ import {
 } from '../duck/history.duck';
 import { history } from '@/services';
 
-function* historyRequestAsync() {
+function* historyRequestAsync({ payload: { user } }) {
   try {
-    console.log('hola');
-    const response = yield call(history.all);
+    console.log(user);
+    const response = yield call(history.all, user.usuario_id);
+    console.log(response);
     yield put(historySuccess(response));
   } catch (error) {
     yield put(historyFailure(error));
