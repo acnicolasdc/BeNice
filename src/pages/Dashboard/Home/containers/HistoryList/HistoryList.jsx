@@ -9,7 +9,7 @@ const HistoryList = () => {
     to: { marginLeft: 20, opacity: 1, transform: 'translate3d(0,0px,0)' },
   });
   const { container } = useStyles();
-  console.log(container);
+
   return (
     <div className={container}>
       {trail.map((props, index) => (
