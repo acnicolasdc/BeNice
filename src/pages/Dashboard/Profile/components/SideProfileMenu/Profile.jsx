@@ -9,14 +9,19 @@ import useStyles from './Profile.styles'
 import logo from '@/assets/images/logo.png';
 import Paper from '@material-ui/core/Paper';
 
-export default ({onClick, firstName, lastName, username,  password }) => {
+export default ({onClick, name, mail, username,  password, updateUserData }) => {
   const classes = useStyles();
 
-  const [dataUser, setData] = useState({ firstName, lastName, username,  password });
+  const [dataUser, setData] = useState({ name, mail, username,  password });
 
   const handleOnChange = (e) => {
     setData({ ...dataUser, [e.target.name]: e.target.value });
   };
+
+  const handleOnClick = () => {
+    updateUserData({...dataUser});
+    onClick()
+  }
 
   return (
     <Paper className={classes.container}>
@@ -30,14 +35,14 @@ export default ({onClick, firstName, lastName, username,  password }) => {
           <Grid container spacing={2}>
             <Grid item xs={12}>
               <TextField
-                autoComplete="fname"
-                name="firstName"              
+                autoComplete="name"
+                name="name"              
                 required
                 fullWidth
-                id="firstName"
-                label="First Name"
+                id="name"
+                label="Name"
                 autoFocus
-                value={dataUser.firstName}
+                value={dataUser.name}
                 onChange={handleOnChange}
               />
             </Grid>
@@ -45,11 +50,11 @@ export default ({onClick, firstName, lastName, username,  password }) => {
               <TextField              
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
-                value={dataUser.lastName}
+                id="mail"
+                label="Email"
+                name="mail"
+                autoComplete="email"
+                value={dataUser.mail}
                 onChange={handleOnChange}
               />
             </Grid>
@@ -85,7 +90,7 @@ export default ({onClick, firstName, lastName, username,  password }) => {
             variant="contained"
             color="primary"
             className={classes.submit}
-            onClick={() => onClick()}
+            onClick={() => handleOnClick()}
           >
             Update
           </Button>
