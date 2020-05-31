@@ -2,11 +2,12 @@ import React from 'react';
 import Grid from '@material-ui/core/Grid';
 import useStyles from './GridBase.style';
 
-const GridBase = ({ FirstChildren, SecondChildren, ThirdChildren}) => {
+const GridBase = ({ FirstChildren, SecondChildren, ThirdChildren }) => {
     const { root } = useStyles();
     return (
         <Grid container className={root} spacing={1}>
-            <Grid>
+
+<Grid>
                 <FirstChildren/>
             </Grid>
             <Grid>
@@ -15,6 +16,7 @@ const GridBase = ({ FirstChildren, SecondChildren, ThirdChildren}) => {
             <Grid>
                 <ThirdChildren/>
             </Grid>
+
         </Grid>
     );
 }
